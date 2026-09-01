@@ -1,4 +1,5 @@
 package assistenciatech;
+import java.time.LocalDate;
 
 public class OrdemServico {
 	
@@ -6,12 +7,12 @@ public class OrdemServico {
 	private String descricaoProblema;
 	private String equipamento;
 	private String status;
-	private String dataAbertura;
+	private LocalDate dataAbertura;
 	private Cliente cliente;
 	private Tecnico tecnico;
 
 
-public OrdemServico(int numero, String descricaoProblema, String equipamento, String status,String dataAbertura, Cliente cliente, Tecnico tecnico) {
+public OrdemServico(int numero, String descricaoProblema, String equipamento, String status,LocalDate dataAbertura, Cliente cliente, Tecnico tecnico) {
 	this.numero = numero;
 	this.descricaoProblema = descricaoProblema;
 	this.equipamento = equipamento;
@@ -50,11 +51,11 @@ public String getStatus() {
 	return status;
 }
 
-public String getDataAbertura() {
+public LocalDate getDataAbertura() {
 	return dataAbertura;
 }
 
-public void setDataAbertura(String dataAbertura) {
+public void setDataAbertura(LocalDate dataAbertura) {
 	this.dataAbertura = dataAbertura;
 }
 

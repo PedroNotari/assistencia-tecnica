@@ -55,4 +55,14 @@ public class AssistenciaTecnica {
 	        System.out.println("============================");
 		}
 	}
+	
+	public Cliente buscarCliente(int indice) {
+		return clientes.get(indice);
+	}
+
+	public Tecnico buscarTecnico(int indice) {
+		return tecnicos.get(indice);
+	}
+
+
 }
