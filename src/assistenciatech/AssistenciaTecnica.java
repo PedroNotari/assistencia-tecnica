@@ -57,12 +57,27 @@ public class AssistenciaTecnica {
 	}
 	
 	public Cliente buscarCliente(int indice) {
+		if(indice < 0 || indice >= clientes.size()) {
+			return null;
+		}
+		
 		return clientes.get(indice);
 	}
 
 	public Tecnico buscarTecnico(int indice) {
+		if(indice < 0 || indice >= tecnicos.size()) {	
+			return null;
+		}
+	
 		return tecnicos.get(indice);
 	}
 
+	public boolean temClientes() {
+		return !clientes.isEmpty();
+	}
+	
+	public boolean temTecnicos() {
+		return !tecnicos.isEmpty();
+	}
 
 }

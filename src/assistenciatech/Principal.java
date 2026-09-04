@@ -1,6 +1,9 @@
 package assistenciatech;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.InputMismatchException;
+
+
 
 public class Principal {
 
@@ -24,8 +27,10 @@ public class Principal {
 			
 			System.out.println("Escolha uma opção:");
 			
-			int opcao = scanner.nextInt();
-			scanner.nextLine();
+			try {
+				int opcao = scanner.nextInt();
+				scanner.nextLine();
+			
 			
 			switch (opcao) {
 			
@@ -33,6 +38,7 @@ public class Principal {
 					continuar = false;
 					break;
 				}
+			
 				
 				case 1: {
 					System.out.println("Digite o nome do cliente:");
@@ -74,11 +80,51 @@ public class Principal {
 				}
 				
 				case 3: {
+					
+					if(!assistencia.temClientes()) {
+						System.out.println("Cadastre pelo menos um cliente antes de abrir uma ordem de serviço.");
+						break;
+					}
+					
+					if(!assistencia.temTecnicos()) {
+						System.out.println("Cadastre pelo menos um técnico antes de abrir uma ordem de serviço.");
+						break;
+					}
+					
 					System.out.println("===== NOVA ORDEM DE SERVIÇO =====");
 					
-					System.out.println("Digite o número da ordem:");
-					int numero = scanner.nextInt();
-					scanner.nextLine();
+					System.out.println("Digite o número da ordem (ou 0 para cancelar):");
+					
+					int numero;
+					boolean cancelar = false;
+					
+					while (true) {
+						try {
+							numero = scanner.nextInt();
+							scanner.nextLine();
+							
+							if(numero == 0) {
+								cancelar = true;
+								break;
+							}
+							
+							if(numero < 0) {
+								System.out.println("Número da ordem inválido.");
+								continue;
+							}
+							
+							break;
+							
+						} catch (InputMismatchException e) {
+							System.out.println("Digite apenas números.");
+							scanner.nextLine();
+						}
+					}
+					
+					if (cancelar) {
+						System.out.println("Abertura de ordem cancelada.");
+						break;
+					}
 					
 					System.out.println("Digite a descrição do problema:");
 					String descricaoProblema = scanner.nextLine();
@@ -98,7 +144,17 @@ public class Principal {
 					int indiceCliente = scanner.nextInt();
 					scanner.nextLine();
 					
+					if(indiceCliente <= 0) {
+						System.out.println("Número de cliente inválido.");
+						break;
+					}
+					
 					Cliente cliente = assistencia.buscarCliente(indiceCliente - 1);
+					
+					if(cliente == null) {
+						System.out.println("Cliente não encontrado.");
+						break;
+					}
 					
 					System.out.println("===== TÉCNICOS =====");
 					assistencia.listarTecnicos();
@@ -107,7 +163,17 @@ public class Principal {
 					int indiceTecnico = scanner.nextInt();
 					scanner.nextLine();
 					
+					if(indiceTecnico <= 0) {
+						System.out.println("Número de técnico inválido.");
+						break;
+					}
+					
 					Tecnico tecnico = assistencia.buscarTecnico(indiceTecnico - 1);
+					
+					if(tecnico == null) {
+						System.out.println("Técnico não encontrado.");
+						break;
+					}
 					
 					OrdemServico ordem = new OrdemServico(
 					numero,
@@ -142,10 +208,17 @@ public class Principal {
 					break;
 					
 				}
+			
+			}
+				
+			} catch(InputMismatchException e) {
+				System.out.println("Digite apenas números.");
+				scanner.nextLine();
+			}
 				
 			}
 				}
 		}
 
 	
-	}
+	
