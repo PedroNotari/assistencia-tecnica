@@ -41,17 +41,64 @@ public class Principal {
 			
 				
 				case 1: {
-					System.out.println("Digite o nome do cliente:");
-				    String nome = scanner.nextLine();
+					
+					String nome;
+					
+					while (true) {
+						System.out.println("Digite o nome do cliente:");
+						nome = scanner.nextLine();
+						
+						if(nome.trim().isEmpty()) {
+							System.out.println("O nome não pode ficar vazio.");
+						} else if (nome.matches(".*\\d.*")) {
+							System.out.println("O nome não pode conter números.");
+						} else {
+							break;
+						}
+					}
 
-				    System.out.println("Digite o CPF:");
-				    String cpf = scanner.nextLine();
+				    String cpf;
+				    
+				    while (true) {
+				    	System.out.println("Digite o CPF:");
+				    	cpf = scanner.nextLine();
+				    	
+				    	if(cpf.trim().isEmpty()) {
+				    		System.out.println("O CPF não pode ficar vazio.");
+				    	} else if (!cpf.matches("\\d{11}")) {
+				    		System.out.println("O CPF deve conter 11 dígitos.");
+				    	} else if (!validarCPF(cpf)) {
+				    		System.out.println("CPF inválido.");
+				    	} else {
+				    		break;
+				    	}
+				    }
 
-				    System.out.println("Digite o telefone:");
-				    String telefone = scanner.nextLine();
+				   String telefone;
+				   
+				   while (true) {
+					   System.out.println("Digite o telefone:");
+					   telefone = scanner.nextLine();
+					   
+					   if(telefone.matches("\\d{10}|\\d{11}")) {
+						   break;
+					   } else {
+						   System.out.println("O telefone deve conter 10 ou 11 dígitos.");
+					   }
+				   }
 
-				    System.out.println("Digite o e-mail:");
-				    String email = scanner.nextLine();
+				    String email;
+				    
+				    while (true) {
+				    	System.out.println("Digite o e-mail:");
+				    	email = scanner.nextLine();
+				    	
+				    	if(email.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$")) {
+				    		break;
+				    	} else {
+				    		System.out.println("Digite um e-mail válido.");
+				    	}
+				    }
 
 				    Cliente cliente = new Cliente(nome, cpf, telefone, email);
 
@@ -62,14 +109,51 @@ public class Principal {
 				}
 				
 				case 2: {
-					System.out.println("Digite o nome do técnico:");
-					String nome = scanner.nextLine();
 					
-					System.out.println("Digite o CPF:");
-					String cpf = scanner.nextLine();
+					String nome;
+
+					while (true) {
+					    System.out.println("Digite o nome do técnico:");
+					    nome = scanner.nextLine();
+
+					    if (nome.trim().isEmpty()) {
+					        System.out.println("O nome não pode ficar vazio.");
+					    } else if (nome.matches(".*\\d.*")) {
+					        System.out.println("O nome não pode conter números.");
+					    } else {
+					        break;
+					    }
+					}
 					
-					System.out.println("Digite a especialidade:");
-					String especialidade = scanner.nextLine();
+					String cpf;
+
+					while (true) {
+					    System.out.println("Digite o CPF:");
+					    cpf = scanner.nextLine();
+
+					    if (cpf.trim().isEmpty()) {
+					        System.out.println("O CPF não pode ficar vazio.");
+					    } else if (!cpf.matches("\\d{11}")) {
+					        System.out.println("O CPF deve conter 11 dígitos.");
+					    } else if (!validarCPF(cpf)) {
+					        System.out.println("CPF inválido.");
+					    } else {
+					        break;
+					    }
+					}
+					
+					String especialidade;
+
+					while (true) {
+					    System.out.println("Digite a especialidade:");
+					    especialidade = scanner.nextLine();
+
+					    if (especialidade.trim().isEmpty()) {
+					        System.out.println("A especialidade não pode ficar vazia.");
+					    } else {
+					        break;
+					    }
+					}
 					
 					Tecnico tecnico = new Tecnico(nome, cpf, especialidade);
 					
@@ -218,7 +302,38 @@ public class Principal {
 				
 			}
 				}
-		}
 
-	
-	
+
+	public static boolean validarCPF(String cpf) {
+		
+		int soma = 0;
+		
+		for (int i = 0; i < 9; i++) {
+			soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
+		}
+		
+		int resto = soma % 11;
+		int primeiroDigito = (resto < 2) ? 0 : 11 - resto;
+		
+		
+		if (primeiroDigito != Character.getNumericValue(cpf.charAt(9))) {
+			return false;
+		}
+		
+		soma = 0;
+		
+		for (int i = 0; i < 10; i++) {
+			soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
+		}
+		
+		resto = soma % 11;
+		int segundoDigito = (resto < 2) ? 0 : 11 - resto;
+		
+		if (segundoDigito != Character.getNumericValue(cpf.charAt(10))) {
+			return false;
+		}
+		
+		return true;
+	}
+
+}
