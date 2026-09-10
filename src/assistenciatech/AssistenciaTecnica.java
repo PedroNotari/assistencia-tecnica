@@ -79,5 +79,15 @@ public class AssistenciaTecnica {
 	public boolean temTecnicos() {
 		return !tecnicos.isEmpty();
 	}
+	
+	public OrdemServico buscarOrdemPorNumero(int numero) {
+		for (OrdemServico ordem : ordens) {
+			if	(ordem.getNumero() == numero) {
+				return ordem;
+			} 
+		}	
+			return null;
+		
+	}
 
 }
