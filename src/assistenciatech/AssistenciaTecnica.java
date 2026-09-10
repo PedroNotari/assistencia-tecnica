@@ -29,16 +29,16 @@ public class AssistenciaTecnica {
 	
 	public void listarClientes() {
 		
-		for (Cliente cliente : clientes) {
-			System.out.println(cliente.getNome());
-		}
+		for (int i = 0; i < clientes.size(); i++) {
+			System.out.println((i + 1) + " - " + clientes.get(i).getNome());
 	}
-
+	}
+	
 	public void listarTecnicos() {
 		
-		for (Tecnico tecnico : tecnicos) {
-			System.out.println(tecnico.getNome());
-		}
+		for (int i = 0; i < tecnicos.size(); i++) {
+			System.out.println((i + 1) + " - " + tecnicos.get(i).getNome());
+	}
 	}
 	
 	public void listarOrdens() {
