@@ -330,6 +330,10 @@ public class Principal {
 
 	public static boolean validarCPF(String cpf) {
 		
+		if (todosDigitosIguais(cpf)) {
+			return false;
+		}
+		
 		int soma = 0;
 		
 		for (int i = 0; i < 9; i++) {
