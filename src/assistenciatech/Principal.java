@@ -23,6 +23,7 @@ public class Principal {
 			System.out.println("4 - Listar clientes");
 			System.out.println("5 - Listar técnicos");
 			System.out.println("6 - Listar ordens");
+			System.out.println("7 - Atualizar status da ordem");
 			System.out.println("0 - Sair");
 			
 			System.out.println("Escolha uma opção:");
@@ -216,8 +217,7 @@ public class Principal {
 					System.out.println("Digite o equipamento:");
 					String equipamento = scanner.nextLine();
 					
-					System.out.println("Digite o status:");
-					String status = scanner.nextLine();
+					String status = escolherStatus(scanner);
 					
 					LocalDate data = LocalDate.now();
 					
@@ -292,7 +292,31 @@ public class Principal {
 					break;
 					
 				}
-			
+				
+				case 7: {
+					System.out.println("===== ATUALIZAR STATUS DA ORDEM =====");
+					
+					assistencia.listarOrdens();
+					
+					System.out.println("Digite o número da ordem que deseja atualizar: ");
+					int numero = scanner.nextInt();
+					scanner.nextLine();
+					
+					OrdemServico ordem = assistencia.buscarOrdemPorNumero(numero);
+					
+					if	(ordem == null) {
+						System.out.println("Ordem não encontrada.");
+					
+						break;
+					}
+					
+					String status = escolherStatus(scanner);
+					ordem.setStatus(status);
+					System.out.println("Status atualizado com sucesso!");
+					
+					break;
+				}
+					
 			}
 				
 			} catch(InputMismatchException e) {
@@ -335,5 +359,55 @@ public class Principal {
 		
 		return true;
 	}
+	
+	public static boolean todosDigitosIguais(String cpf) {
+		for (int i = 1; i < cpf.length(); i++) {
+			if(cpf.charAt(i) != cpf.charAt(0)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static String escolherStatus(Scanner scanner) {
+		
+		String status;
 
+		while (true) {
+		    System.out.println("===== STATUS DA ORDEM =====");
+		    System.out.println("1 - Aberta");
+		    System.out.println("2 - Em andamento");
+		    System.out.println("3 - Aguardando peça");
+		    System.out.println("4 - Concluída");
+
+		    System.out.println("Escolha o status:");
+
+		    int opcaoStatus = scanner.nextInt();
+		    scanner.nextLine();
+
+		    switch(opcaoStatus) {
+		        case 1:
+		            status = "Aberta";
+		            break;
+		        case 2:
+		            status = "Em andamento";
+		            break;
+		        case 3:
+		            status = "Aguardando peça";
+		            break;
+		        case 4:
+		            status = "Concluída";
+		            break;
+		        default:
+		            System.out.println("Opção de status inválida.");
+		            continue;
+		    }
+		    return status;
+		}
+		
+		
+	}
+		
 }
+
+
