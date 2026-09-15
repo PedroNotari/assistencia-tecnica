@@ -43,131 +43,15 @@ public class Principal {
 				
 				case 1: {
 					
-					String nome;
-					
-					while (true) {
-						System.out.println("Digite o nome do cliente:");
-						nome = scanner.nextLine();
-						
-						if(nome.trim().isEmpty()) {
-							System.out.println("O nome não pode ficar vazio.");
-						} else if (nome.matches(".*\\d.*")) {
-							System.out.println("O nome não pode conter números.");
-						} else {
-							break;
-						}
-					}
-
-				    String cpf;
-				    
-				    while (true) {
-				    	System.out.println("Digite o CPF:");
-				    	cpf = scanner.nextLine();
-				    	
-				    	if(cpf.trim().isEmpty()) {
-				    		System.out.println("O CPF não pode ficar vazio.");
-				    	} else if (!cpf.matches("\\d{11}")) {
-				    		System.out.println("O CPF deve conter 11 dígitos.");
-				    	} else if (!validarCPF(cpf)) {
-				    		System.out.println("CPF inválido.");
-				    	} else if (assistencia.cpfClienteJaCadastrado(cpf)) {
-				    		System.out.println("CPF já existe.");
-				    	} else {
-				    		
-				    		break;
-				    	}
-				    }
-
-				   String telefone;
-				   
-				   while (true) {
-					   System.out.println("Digite o telefone:");
-					   telefone = scanner.nextLine();
-					   
-					   if(telefone.matches("\\d{10}|\\d{11}")) {
-						   break;
-					   } else {
-						   System.out.println("O telefone deve conter 10 ou 11 dígitos.");
-					   }
-				   }
-
-				    String email;
-				    
-				    while (true) {
-				    	System.out.println("Digite o e-mail:");
-				    	email = scanner.nextLine();
-				    	
-				    	if(email.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$")) {
-				    		break;
-				    	} else {
-				    		System.out.println("Digite um e-mail válido.");
-				    	}
-				    }
-
-				    Cliente cliente = new Cliente(nome, cpf, telefone, email);
-
-				    assistencia.adicionarCliente(cliente);
-				    
+					cadastrarCliente(scanner, assistencia);
 					break;
 				
 				}
 				
 				case 2: {
 					
-					String nome;
-
-					while (true) {
-					    System.out.println("Digite o nome do técnico:");
-					    nome = scanner.nextLine();
-
-					    if (nome.trim().isEmpty()) {
-					        System.out.println("O nome não pode ficar vazio.");
-					    } else if (nome.matches(".*\\d.*")) {
-					        System.out.println("O nome não pode conter números.");
-					    } else {
-					        break;
-					    }
-					}
-					
-					String cpf;
-
-					while (true) {
-					    System.out.println("Digite o CPF:");
-					    cpf = scanner.nextLine();
-
-					    if (cpf.trim().isEmpty()) {
-					        System.out.println("O CPF não pode ficar vazio.");
-					    } else if (!cpf.matches("\\d{11}")) {
-					        System.out.println("O CPF deve conter 11 dígitos.");
-					    } else if (!validarCPF(cpf)) {
-					        System.out.println("CPF inválido.");
-					    } else if (assistencia.cpfTecnicoJaCadastrado(cpf)) {
-					    	System.out.println("CPF já existe.");
-					    } else {
-					    	
-					    	break;
-					    }
-					}
-					
-					String especialidade;
-
-					while (true) {
-					    System.out.println("Digite a especialidade:");
-					    especialidade = scanner.nextLine();
-
-					    if (especialidade.trim().isEmpty()) {
-					        System.out.println("A especialidade não pode ficar vazia.");
-					    } else {
-					        break;
-					    }
-					}
-					
-					Tecnico tecnico = new Tecnico(nome, cpf, especialidade);
-					
-					assistencia.adicionarTecnico(tecnico);
-					
+					cadastrarTecnico(scanner, assistencia);
 					break;
-				
 				}
 				
 				case 3: {
@@ -417,7 +301,130 @@ public class Principal {
 		
 		
 	}
+	
+	private static void cadastrarCliente(Scanner scanner, AssistenciaTecnica assistencia) {
 		
+		String nome;
+		
+		while (true) {
+			System.out.println("Digite o nome do cliente:");
+			nome = scanner.nextLine();
+			
+			if(nome.trim().isEmpty()) {
+				System.out.println("O nome não pode ficar vazio.");
+			} else if (nome.matches(".*\\d.*")) {
+				System.out.println("O nome não pode conter números.");
+			} else {
+				break;
+			}
+		}
+
+	    String cpf;
+	    
+	    while (true) {
+	    	System.out.println("Digite o CPF:");
+	    	cpf = scanner.nextLine();
+	    	
+	    	if(cpf.trim().isEmpty()) {
+	    		System.out.println("O CPF não pode ficar vazio.");
+	    	} else if (!cpf.matches("\\d{11}")) {
+	    		System.out.println("O CPF deve conter 11 dígitos.");
+	    	} else if (!validarCPF(cpf)) {
+	    		System.out.println("CPF inválido.");
+	    	} else if (assistencia.cpfClienteJaCadastrado(cpf)) {
+	    		System.out.println("CPF já existe.");
+	    	} else {
+	    		
+	    		break;
+	    	}
+	    }
+
+	   String telefone;
+	   
+	   while (true) {
+		   System.out.println("Digite o telefone:");
+		   telefone = scanner.nextLine();
+		   
+		   if(telefone.matches("\\d{10}|\\d{11}")) {
+			   break;
+		   } else {
+			   System.out.println("O telefone deve conter 10 ou 11 dígitos.");
+		   }
+	   }
+
+	    String email;
+	    
+	    while (true) {
+	    	System.out.println("Digite o e-mail:");
+	    	email = scanner.nextLine();
+	    	
+	    	if(email.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$")) {
+	    		break;
+	    	} else {
+	    		System.out.println("Digite um e-mail válido.");
+	    	}
+	    }
+
+	    Cliente cliente = new Cliente(nome, cpf, telefone, email);
+
+	    assistencia.adicionarCliente(cliente);
+	    
+	}
+
+	private static void cadastrarTecnico(Scanner scanner, AssistenciaTecnica assistencia) {
+		
+		String nome;
+
+		while (true) {
+		    System.out.println("Digite o nome do técnico:");
+		    nome = scanner.nextLine();
+
+		    if (nome.trim().isEmpty()) {
+		        System.out.println("O nome não pode ficar vazio.");
+		    } else if (nome.matches(".*\\d.*")) {
+		        System.out.println("O nome não pode conter números.");
+		    } else {
+		        break;
+		    }
+		}
+		
+		String cpf;
+
+		while (true) {
+		    System.out.println("Digite o CPF:");
+		    cpf = scanner.nextLine();
+
+		    if (cpf.trim().isEmpty()) {
+		        System.out.println("O CPF não pode ficar vazio.");
+		    } else if (!cpf.matches("\\d{11}")) {
+		        System.out.println("O CPF deve conter 11 dígitos.");
+		    } else if (!validarCPF(cpf)) {
+		        System.out.println("CPF inválido.");
+		    } else if (assistencia.cpfTecnicoJaCadastrado(cpf)) {
+		    	System.out.println("CPF já existe.");
+		    } else {
+		    	
+		    	break;
+		    }
+		}
+		
+		String especialidade;
+
+		while (true) {
+		    System.out.println("Digite a especialidade:");
+		    especialidade = scanner.nextLine();
+
+		    if (especialidade.trim().isEmpty()) {
+		        System.out.println("A especialidade não pode ficar vazia.");
+		    } else {
+		        break;
+		    }
+		}
+		
+		Tecnico tecnico = new Tecnico(nome, cpf, especialidade);
+		
+		assistencia.adicionarTecnico(tecnico);
+	
+	}
+
 }
-
-
