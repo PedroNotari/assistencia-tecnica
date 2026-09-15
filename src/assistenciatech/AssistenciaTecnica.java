@@ -89,5 +89,24 @@ public class AssistenciaTecnica {
 			return null;
 		
 	}
-
+	
+	public boolean cpfClienteJaCadastrado(String cpf) {
+		for (Cliente cliente : clientes) {
+			if (cliente.getCpf().equals(cpf)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean cpfTecnicoJaCadastrado(String cpf) {
+		for (Tecnico tecnico : tecnicos) {
+			if (tecnico.getCpf().equals(cpf)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

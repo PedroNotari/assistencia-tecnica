@@ -70,7 +70,10 @@ public class Principal {
 				    		System.out.println("O CPF deve conter 11 dígitos.");
 				    	} else if (!validarCPF(cpf)) {
 				    		System.out.println("CPF inválido.");
+				    	} else if (assistencia.cpfClienteJaCadastrado(cpf)) {
+				    		System.out.println("CPF já existe.");
 				    	} else {
+				    		
 				    		break;
 				    	}
 				    }
@@ -138,8 +141,11 @@ public class Principal {
 					        System.out.println("O CPF deve conter 11 dígitos.");
 					    } else if (!validarCPF(cpf)) {
 					        System.out.println("CPF inválido.");
+					    } else if (assistencia.cpfTecnicoJaCadastrado(cpf)) {
+					    	System.out.println("CPF já existe.");
 					    } else {
-					        break;
+					    	
+					    	break;
 					    }
 					}
 					
