@@ -42,20 +42,17 @@ public class Principal {
 			
 				
 				case 1: {
-					
 					cadastrarCliente(scanner, assistencia);
 					break;
 				
 				}
 				
 				case 2: {
-					
 					cadastrarTecnico(scanner, assistencia);
 					break;
 				}
 				
 				case 3: {
-					
 					abrirOrdemServico(scanner, assistencia);
 					break;
 				}
@@ -79,26 +76,7 @@ public class Principal {
 				}
 				
 				case 7: {
-					System.out.println("===== ATUALIZAR STATUS DA ORDEM =====");
-					
-					assistencia.listarOrdens();
-					
-					System.out.println("Digite o número da ordem que deseja atualizar: ");
-					int numero = scanner.nextInt();
-					scanner.nextLine();
-					
-					OrdemServico ordem = assistencia.buscarOrdemPorNumero(numero);
-					
-					if	(ordem == null) {
-						System.out.println("Ordem não encontrada.");
-					
-						break;
-					}
-					
-					String status = escolherStatus(scanner);
-					ordem.setStatus(status);
-					System.out.println("Status atualizado com sucesso!");
-					
+					atualizarStatusOrdem(scanner, assistencia);
 					break;
 				}
 					
@@ -432,5 +410,27 @@ public class Principal {
 				
 	}
 
+	private static void atualizarStatusOrdem(Scanner scanner, AssistenciaTecnica assistencia) {
+		
+		System.out.println("===== ATUALIZAR STATUS DA ORDEM =====");
 
+	    assistencia.listarOrdens();
+
+	    System.out.println("Digite o número da ordem que deseja atualizar: ");
+	    int numero = scanner.nextInt();
+	    scanner.nextLine();
+
+	    OrdemServico ordem = assistencia.buscarOrdemPorNumero(numero);
+
+	    if (ordem == null) {
+	        System.out.println("Ordem não encontrada.");
+	        return;
+	    }
+
+	    String status = escolherStatus(scanner);
+	    ordem.setStatus(status);
+	    System.out.println("Status atualizado com sucesso!");
+
+	}
+	
 }
