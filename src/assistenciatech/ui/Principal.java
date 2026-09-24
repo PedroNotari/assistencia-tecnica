@@ -1,6 +1,12 @@
-package assistenciatech;
+package assistenciatech.ui;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import assistenciatech.model.Cliente;
+import assistenciatech.model.OrdemServico;
+import assistenciatech.model.Tecnico;
+import assistenciatech.service.AssistenciaTecnica;
+
 import java.util.InputMismatchException;
 
 

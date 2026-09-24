@@ -1,4 +1,4 @@
-package assistenciatech;
+package assistenciatech.model;
 import java.time.LocalDate;
 
 public class OrdemServico {

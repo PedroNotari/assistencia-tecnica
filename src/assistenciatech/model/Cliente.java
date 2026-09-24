@@ -1,4 +1,4 @@
-package assistenciatech;
+package assistenciatech.model;
 
 public class Cliente {
 

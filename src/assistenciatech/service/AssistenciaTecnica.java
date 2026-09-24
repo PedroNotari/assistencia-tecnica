@@ -1,5 +1,9 @@
-package assistenciatech;
+package assistenciatech.service;
 import java.util.ArrayList;
+
+import assistenciatech.model.Cliente;
+import assistenciatech.model.OrdemServico;
+import assistenciatech.model.Tecnico;
 
 public class AssistenciaTecnica {
 	
