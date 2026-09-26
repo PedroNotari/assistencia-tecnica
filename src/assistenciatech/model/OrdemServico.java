@@ -6,13 +6,13 @@ public class OrdemServico {
 	private int numero;
 	private String descricaoProblema;
 	private String equipamento;
-	private String status;
+	private StatusOS status;
 	private LocalDate dataAbertura;
 	private Cliente cliente;
 	private Tecnico tecnico;
 
 
-public OrdemServico(int numero, String descricaoProblema, String equipamento, String status,LocalDate dataAbertura, Cliente cliente, Tecnico tecnico) {
+public OrdemServico(int numero, String descricaoProblema, String equipamento, StatusOS status,LocalDate dataAbertura, Cliente cliente, Tecnico tecnico) {
 	this.numero = numero;
 	this.descricaoProblema = descricaoProblema;
 	this.equipamento = equipamento;
@@ -47,7 +47,7 @@ public void setEquipamento(String equipamento) {
 	this.equipamento = equipamento;
 }
 
-public String getStatus() {
+public StatusOS getStatus() {
 	return status;
 }
 
@@ -59,7 +59,7 @@ public void setDataAbertura(LocalDate dataAbertura) {
 	this.dataAbertura = dataAbertura;
 }
 
-public void setStatus(String status) {
+public void setStatus(StatusOS status) {
 	this.status = status;
 }
 

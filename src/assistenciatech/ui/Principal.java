@@ -6,6 +6,7 @@ import assistenciatech.model.Cliente;
 import assistenciatech.model.OrdemServico;
 import assistenciatech.model.Tecnico;
 import assistenciatech.service.AssistenciaTecnica;
+import assistenciatech.model.StatusOS;
 
 import java.util.InputMismatchException;
 
@@ -142,9 +143,9 @@ public class Principal {
 		return true;
 	}
 	
-	public static String escolherStatus(Scanner scanner) {
+	public static StatusOS escolherStatus(Scanner scanner) {
 		
-		String status;
+		StatusOS status;
 
 		while (true) {
 		    System.out.println("===== STATUS DA ORDEM =====");
@@ -160,16 +161,16 @@ public class Principal {
 
 		    switch(opcaoStatus) {
 		        case 1:
-		            status = "Aberta";
+		            status = StatusOS.ABERTA;
 		            break;
 		        case 2:
-		            status = "Em andamento";
+		            status = StatusOS.EM_ANDAMENTO;
 		            break;
 		        case 3:
-		            status = "Aguardando peça";
+		            status = StatusOS.AGUARDANDO_PECA;
 		            break;
 		        case 4:
-		            status = "Concluída";
+		            status = StatusOS.CONCLUIDA;
 		            break;
 		        default:
 		            System.out.println("Opção de status inválida.");
@@ -359,7 +360,7 @@ public class Principal {
 		System.out.println("Digite o equipamento:");
 		String equipamento = scanner.nextLine();
 
-		String status = escolherStatus(scanner);
+		StatusOS status = escolherStatus(scanner);
 
 		LocalDate data = LocalDate.now();
 		
@@ -433,7 +434,7 @@ public class Principal {
 	        return;
 	    }
 
-	    String status = escolherStatus(scanner);
+	    StatusOS status = escolherStatus(scanner);
 	    ordem.setStatus(status);
 	    System.out.println("Status atualizado com sucesso!");
 
