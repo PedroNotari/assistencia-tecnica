@@ -7,7 +7,7 @@ import assistenciatech.model.OrdemServico;
 import assistenciatech.model.Tecnico;
 import assistenciatech.service.AssistenciaTecnica;
 import assistenciatech.model.StatusOS;
-
+import assistenciatech.exception.OrdemNaoEncontradaException;
 import java.util.InputMismatchException;
 
 
@@ -427,12 +427,15 @@ public class Principal {
 	    int numero = scanner.nextInt();
 	    scanner.nextLine();
 
-	    OrdemServico ordem = assistencia.buscarOrdemPorNumero(numero);
-
-	    if (ordem == null) {
-	        System.out.println("Ordem não encontrada.");
-	        return;
-	    }
+	    OrdemServico ordem;
+	    
+	   try {
+		   
+		   ordem = assistencia.buscarOrdemPorNumero(numero);
+	   } catch (OrdemNaoEncontradaException e) {
+		   System.out.println(e.getMessage());
+		   return;
+	   }
 
 	    StatusOS status = escolherStatus(scanner);
 	    ordem.setStatus(status);

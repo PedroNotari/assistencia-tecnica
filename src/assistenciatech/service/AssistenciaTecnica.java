@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import assistenciatech.model.Cliente;
 import assistenciatech.model.OrdemServico;
 import assistenciatech.model.Tecnico;
+import assistenciatech.exception.OrdemNaoEncontradaException;
 
 public class AssistenciaTecnica {
 	
@@ -84,13 +85,13 @@ public class AssistenciaTecnica {
 		return !tecnicos.isEmpty();
 	}
 	
-	public OrdemServico buscarOrdemPorNumero(int numero) {
+	public OrdemServico buscarOrdemPorNumero(int numero) throws OrdemNaoEncontradaException {
 		for (OrdemServico ordem : ordens) {
 			if	(ordem.getNumero() == numero) {
 				return ordem;
 			} 
 		}	
-			return null;
+			throw new OrdemNaoEncontradaException("Ordem não encontrada.");
 		
 	}
 	
