@@ -17,6 +17,9 @@ A ideia é evoluir o sistema gradualmente, adicionando novas funcionalidades e m
 - Listagem de clientes
 - Listagem de técnicos
 - Listagem de ordens de serviço
+- Validação de dados
+- Tratamento de entradas inválidas
+- Melhorias no gerenciamento de ordens de serviço
 
 # Tecnologias
 
@@ -31,8 +34,5 @@ Em desenvolvimento
 
 # Próximos passos
 
-- Validação de dados
-- Tratamento de entradas inválidas
-- Melhorias no gerenciamento de ordens de serviço
 - Persistência de dados
 - Interface gráfica
