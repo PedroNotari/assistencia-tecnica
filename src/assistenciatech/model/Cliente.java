@@ -1,5 +1,7 @@
 package assistenciatech.model;
 
+import java.util.Objects;
+
 public class Cliente {
 
 		private String nome;
@@ -46,5 +48,23 @@ public String getEmail() {
 
 public void setEmail(String email) {
 	this.email = email;
+}
+
+@Override
+
+public boolean equals(Object obj) {
+	if (this == obj) {
+		return true;
+	}
+	if (obj == null || getClass() != obj.getClass()) {
+		return false;
+	}
+	Cliente outro = (Cliente) obj;
+	return cpf.equals(outro.getCpf());
+}
+@Override
+
+public int hashCode() {
+	return Objects.hash(cpf);
 }
 }

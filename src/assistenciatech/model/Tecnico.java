@@ -1,5 +1,7 @@
 package assistenciatech.model;
 
+import java.util.Objects;
+
 public class Tecnico {
 
 	private String nome;
@@ -34,6 +36,24 @@ public String getEspecialidade() {
 
 public void setEspecialidade(String especialidade) {
 	this.especialidade = especialidade;
+}
+
+@Override
+
+public boolean equals(Object obj) {
+	if (this == obj) {
+		return true;
+	}
+	if (obj == null || getClass() != obj.getClass()) {
+		return false;
+	}
+	Tecnico outro = (Tecnico) obj;
+	return cpf.equals(outro.getCpf());
+}
+@Override
+
+public int hashCode() {
+	return Objects.hash(cpf);
 }
 
 }

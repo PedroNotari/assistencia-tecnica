@@ -1,5 +1,6 @@
 package assistenciatech.model;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class OrdemServico {
 	
@@ -77,6 +78,23 @@ public Tecnico getTecnico() {
 
 public void setTecnico(Tecnico tecnico) {
 	this.tecnico = tecnico;
+}
+@Override
+
+public boolean equals(Object obj) {
+	if (this == obj) {
+		return true;
+	}
+	if (obj == null || getClass() != obj.getClass()) {
+		return false;
+	}
+	OrdemServico outro = (OrdemServico) obj;
+	return numero == outro.getNumero();
+}
+@Override
+
+public int hashCode() {
+	return Objects.hash(numero);
 }
 
 }
