@@ -21,6 +21,22 @@ A ideia é evoluir o sistema gradualmente, adicionando novas funcionalidades e m
 - Tratamento de entradas inválidas
 - Melhorias no gerenciamento de ordens de serviço
 
+```
+src/assistenciatech
+├── model
+│   ├── Cliente.java
+│   ├── Tecnico.java
+│   ├── OrdemServico.java
+│   └── StatusOS.java
+├── service
+│   └── AssistenciaTecnica.java
+├── ui
+│   └── Principal.java
+└── exception
+    ├── CpfInvalidoException.java
+    └── OrdemNaoEncontradaException.java
+```
+
 # Tecnologias
 
 - Java
