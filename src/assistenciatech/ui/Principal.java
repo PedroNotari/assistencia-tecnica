@@ -98,7 +98,7 @@ public class Principal {
 				}
 
 
-	public static boolean validarCPF(String cpf) {
+	private static boolean validarCPF(String cpf) {
 		
 		if (todosDigitosIguais(cpf)) {
 			return false;
@@ -134,7 +134,7 @@ public class Principal {
 		return true;
 	}
 	
-	public static boolean todosDigitosIguais(String cpf) {
+	private static boolean todosDigitosIguais(String cpf) {
 		for (int i = 1; i < cpf.length(); i++) {
 			if(cpf.charAt(i) != cpf.charAt(0)) {
 				return false;
@@ -143,7 +143,7 @@ public class Principal {
 		return true;
 	}
 	
-	public static StatusOS escolherStatus(Scanner scanner) {
+	private static StatusOS escolherStatus(Scanner scanner) {
 		
 		StatusOS status;
 
